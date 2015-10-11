@@ -1,24 +1,20 @@
 Package.describe({
   name: 'poetic:assets',
   version: '0.0.1',
-  // Brief, one-line summary of the package.
-  summary: '',
-  // URL to the Git repository containing the source code for this package.
-  git: '',
-  // By default, Meteor will default to using README.md for documentation.
-  // To avoid submitting documentation, set this field to null.
+  summary: 'TiCons wrapper for automatically generating icon and splash screen assets',
+  git: 'https://github.com/poetic/assets',
   documentation: 'README.md'
 });
 
-Package.onUse(function(api) {
-  api.versionsFrom('1.2.0.2');
-  api.use('ecmascript');
-  api.addFiles('assets.js');
+Package.onUse(function (api) {
+  api.use('isobuild:compiler-plugin@1.0.0');
 });
 
-Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('poetic:assets');
-  api.addFiles('assets-tests.js');
+Package.registerBuildPlugin({
+  name: 'generateAssets',
+  sources: ['assets.js'],
+  npmDependencies: {
+    'fs-extra': '0.24.0',
+    'ticons': '0.15.3'
+  }
 });
