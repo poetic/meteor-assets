@@ -4,7 +4,7 @@ var fs = Npm.require('fs-extra'),
 
 
 Plugin.registerCompiler({
-  filenames: ['DefaultIcon.png', 'splash.png']
+  filenames: ['icon.png', 'splash.png']
 }, function () {
   var compiler  = new AssetsCompiler();
   return compiler;
@@ -19,15 +19,12 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
     var cacheDir = path.join(baseDir, '.meteor/local/assets');
     var fileName = file.getBasename();
     var fileType = null;
-    var type = null;
 
     if (fileName === 'splash.png') {
       fileType = 'splashes';
-      type = 1;
 
-    } else if (fileName === 'DefaultIcon.png') {
+    } else if (fileName === 'icon.png') {
       fileType = 'icons';
-      type = 2;
     }
 
     ticons[fileType]({
@@ -42,9 +39,9 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
 
     var filesToCopy;
      // fromPath: toPath
-      switch(type){
+      switch(fileType){
 
-        case 1:
+        case 'splashes':
           filesToCopy = {
             'Resources/iphone': 'splash',
             'platform/android/res/drawable-hdpi/background.9.png': 'splash/drawable-hdpi.png',
@@ -54,9 +51,8 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
           }
           break;
 
-        case 2: {
+        case 'icons': {
 
-          //var iosIconString = '/' + fileName;
           filesToCopy = {
             '/DefaultIcon.png': 'icon/icon.png',
             '/MarketplaceArtwork.png':'icon/MarketplaceArtwork.png',
@@ -66,6 +62,7 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
             'platform/android/res/drawable-xxhdpi/appicon.png':'icon/drawable-xxhdpi.png'
 
           }
+          break;
         }
 
       }
@@ -74,7 +71,10 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
         var fromPath = path.join(cacheDir, key);
         var toPath = path.join(assetsDir, filesToCopy[key]);
         fs.copy(fromPath, toPath, function (err) {
-          if (err) { throw err; }
+          if (err) { 
+            throw err;
+            
+          }
         });
       }
 

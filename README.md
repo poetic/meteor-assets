@@ -9,7 +9,7 @@ Automatically generates icons and splash screen assets.
 ### Configuration
 
 ###### How to Use:
-Before running your meteor app add any launch/splash screen images and app icons to the root directory of your folder. App icons should be named DefaultIcon.png and launch/splash screen images should be named splash.png. Check requirements for iOS icons below.
+Before running your meteor app add any launch/splash screen images and app icons to the root directory of your folder. App icons should be named icon.png and launch/splash screen images should be named splash.png. Check requirements for iOS icons below.
 
 ###### File Structure:
 ```
@@ -25,7 +25,7 @@ Sample Project
         └───splash
             │   splash.png
 ```
-### Installation
+### Installation Cont.
 ###### iOS Icons
 For iOS app icons, the png image must first be in the shape of a square, same width and height, and no smaller than 180 x 180 (1024 x 1024 recommended). 
 
