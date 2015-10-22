@@ -29,7 +29,7 @@ Sample Project
 ```
 
 ### Mobile 
-When running your meteor project on an ios simulator simply set up your `mobile-config.js` to show both app icons and launch screens at launch. Make sure to follow [meteor documentation](http://docs.meteor.com/#/full/mobileconfigjs) to make sure your mobile-config.js file is set up properly. The generated images should include all those needed for each iPhone size. Check out the size guide below for further reference.
+When running your meteor project on an ios simulator simply set up your `mobile-config.js` to show both app icons and launch screens at launch. Check out [meteor documentation](http://docs.meteor.com/#/full/mobileconfigjs) to make sure your mobile-config.js file is set up properly. The generated images should include all those needed for each iPhone size. Check out the size guide below for further reference.
 ###### App Icons: private/assets/icon
 
 ```
