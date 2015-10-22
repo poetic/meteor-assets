@@ -19,19 +19,22 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
     var cacheDir = path.join(baseDir, '.meteor/local/assets');
     var fileName = file.getBasename();
     var fileType = null;
+    var type = null;
 
     if (fileName === 'splash.png') {
       fileType = 'splashes';
+      cacheDir = path.join(cacheDir, 'splash');
 
     } else if (fileName === 'icon.png') {
       fileType = 'icons';
+      cacheDir = path.join(cacheDir, 'icons');
     }
 
     ticons[fileType]({
       input: fileName,
       outputDir: cacheDir,
       platforms: ['iphone','android'],
-
+      sdkVersion: '4.0.0',
     }, function (err, output) {
       if (err) {
         throw err;
@@ -43,7 +46,7 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
 
         case 'splashes':
           filesToCopy = {
-            'Resources/iphone': 'splash',
+            'Resources/iPhone': 'splash',
             'platform/android/res/drawable-hdpi/background.9.png': 'splash/drawable-hdpi.png',
             'platform/android/res/drawable-mdpi/background.9.png': 'splash/drawable-mdpi.png',
             'platform/android/res/drawable-xhdpi/background.9.png': 'splash/drawable-xhdpi.png',
@@ -52,28 +55,26 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
           break;
 
         case 'icons': {
-
           filesToCopy = {
-            '/DefaultIcon.png': 'icon/icon.png',
-            '/MarketplaceArtwork.png':'icon/MarketplaceArtwork.png',
+            'Resources/iPhone': 'icon',
+            '/MarketplaceArtwork.png':'icon/appicon-512.png',
+            '/DefaultIcon.png': 'icon/appicon-1028.png',
             'platform/android/res/drawable-mdpi/appicon.png': 'icon/drawable-mdpi.png',
             'platform/android/res/drawable-hdpi/appicon.png':'icon/drawable-hdpi.png',
             'platform/android/res/drawable-xhdpi/appicon.png':'icon/drawable-xhdpi.png',
             'platform/android/res/drawable-xxhdpi/appicon.png':'icon/drawable-xxhdpi.png'
-
           }
           break;
         }
-
       }
-
+      
       for (key in filesToCopy) {
         var fromPath = path.join(cacheDir, key);
         var toPath = path.join(assetsDir, filesToCopy[key]);
         fs.copy(fromPath, toPath, function (err) {
           if (err) { 
-            throw err;
-            
+            //throw err;
+            console.log("ERROR: " + err);
           }
         });
       }
