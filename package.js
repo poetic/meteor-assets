@@ -1,6 +1,6 @@
 Package.describe({
   name: 'poetic:assets',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'TiCons wrapper for automatically generating icon and splash screen assets',
   git: 'https://github.com/poetic/assets',
   documentation: 'README.md'

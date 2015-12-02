@@ -9,7 +9,7 @@ Automatically generates icons and splash screen assets.
 ### Configuration
 
 ###### How to Use:
-Before running your meteor app add any launch/splash screen images and app icons to the root directory of your folder. App icons should be named icon.png and launch/splash screen images should be named splash.png. Check requirements for iOS icons below.
+Before running your meteor app add any launch/splash screen images and app icons to the root directory of your folder. App icons should be named icon.png and launch/splash screen images should be named splash.png. Check requirements for iOS icons below. Once the files are generated the package will no longer generate new icons or splash images in order to speed up meteor configuration at startup.
 
 ###### File Structure:
 ```
@@ -36,6 +36,8 @@ When running your meteor project on an ios simulator simply set up your `mobile-
 iPhone: 60 X 60: appicon-60.png
 iPhone: 120 X 120: appicon-60@2x.png
 iPhone: 180 X 180: appicon-60@3x.png
+iPad: 76 X 76: appicon-76.png
+iPad: 152 X 152: appicon-76@2x.png
 android_ldpi: drawable-ldpi.png
 android_mdpi: drawable-mdpi.png
 android_hdpi: drawable-hdpi.png
@@ -48,6 +50,10 @@ iPhone_2x: Default@2x.png
 iPhone5: Default-568h@2x.png
 iPhone6: Default-667h@2x.png
 iPhone6p_portrait: Default-Portrait-736h@3x.png
+iPad Portrait: 768 X 1004: ios-Default-Portrait.png
+iPad Portrait: 1536 X 2008: ios-Default-Portrait@2x.png
+iPad Landscape: 1024 X 748: ios-Default-Landscape
+iPad Landscape: 2048 X 1496: ios-Default-Landscape@2x
 android_ldpi_portrait: drawable-ldpi.png
 android_mdpi_portrait: drawable-mdpi.png
 android_hdpi_portrait: drawable-hdpi.png
