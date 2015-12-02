@@ -36,7 +36,7 @@ AssetsCompiler.prototype.processFilesForTarget = function (files) {
         ticons[fileType]({
           input: fileName,
           outputDir: cacheDir,
-          platforms: ['iphone','ipad',',android'],
+          platforms: ['iphone','ipad','android'],
           sdkVersion: '4.0.0',
         }, function (err, output) {
           if (err) {
